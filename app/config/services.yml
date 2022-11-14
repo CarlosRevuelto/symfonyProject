@@ -1,0 +1,16 @@
+# Learn more about services, parameters and containers at
+# https://symfony.com/doc/current/service_container.html
+parameters:
+    urlGeneratorInterface: Symfony\Component\Routing\Generator\UrlGeneratorInterface
+    tokenManager: Symfony\Component\Security\Csrf\CsrfTokenManagerInterface
+    encoder: Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface
+
+services:
+    UserService:
+        class: AppBundle\Services\UserService
+        arguments: ['@doctrine.orm.entity_manager']
+    
+    #LoginAuthenticator:
+    #    class: AppBundle\Security\LoginFormAuthenticator
+    #    arguments: ['@doctrine.orm.entity_manager', '@UrlGenerator', '%tokenManager%', '%encoder%']
+

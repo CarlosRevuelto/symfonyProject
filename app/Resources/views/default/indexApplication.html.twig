@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    {{parent()}}
+    <div class="text-center mt-5">
+        <div class="mt-3">
+            <h1>Select Your Topic Gift</h1>
+        </div>
+        <div class="mt-3">
+            <p>
+                Write in the input below which topic do you want to search for
+            </p>
+        </div>
+    </div>
+    <div class="text-center mt-3 d-flex">
+        <form method="POST" class="w-100 d-flex">
+            <input type="text" class="form-control" placeholder="Select your topic" id="topicInput"/>
+            <select class="form-select" id="selectToStablishLimit">
+                <option value=10 selected>10</option>
+                <option value=20>20</option>
+                <option value=30>30</option>
+            </select>
+        </form>
+        
+    </div>
+    <div class="row mt-5 justify-content-center" id="rowToWrite">
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{parent()}}
+<style>
+
+    #topicInput{
+        width: 25%;
+        margin: 0 auto;
+    }
+
+    #selectToStablishLimit{
+        width: 5%;
+        position: absolute;
+        left: 64%;
+    }
+
+    #rowToWrite{
+        gap: 16px;
+    }
+</style>
+{% endblock %}
+{% block javascripts %}
+{{parent()}}
+<script src="{{asset('js/form.js')}}"></script>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+
+    encoders:
+        AppBundle\Entity\User: {algorithm: 'bcrypt', cost: 12}
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        #in_memory:
+            #memory: ~
+        usuarios:
+            entity: {class: AppBundle\Entity\User, property: email}
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(admin|backOffice)|css|images|js)/
+            security: false
+    
+        main:
+            anonymous: ~
+            provider: usuarios
+            #guard: 
+            #    authenticators:
+            #        - LoginAuthenticator
+            #logout:
+            #    path: app_logout
+            # activate different ways to authenticate
+
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            #http_basic: ~
+
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            form_login: 
+                login_path: usuario_login
+                check_path: usuario_login_check
+                default_target_path: getIndexApplication
+                always_use_default_target_path: true
+            logout: 
+                path: usuario_logout
+                target: usuario_login
+
+    access_control:
+        - {path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - {path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - {path: ^/user/*, roles: ROLE_USER}
+    
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN]
