@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: mysql
+    database_port: 3306
+    database_name: finalproyectbd
+    database_user: root
+    database_password: root
+    mailer_transport: gmail
+    mailer_host: smtp.gmail.com
+    mailer_user: carlos.revuelto@kosaas.com
+    mailer_password: 'password'
+    secret: ThisTokenIsNotSoSecretChangeIt
